@@ -1,0 +1,88 @@
+<html>
+    <head title="maerial-card">
+        <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="./css/app.css">
+    </head>
+    <body ng-app="materialCard" ng-controller="cardController">
+
+    <md-content>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings">
+                    <md-icon md-svg-icon="img/icons/ic_list_white_24px.svg"></md-icon>
+                </md-button>
+                <h2>
+                    <span>Destination Finder</span>
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Favorite">
+                    <md-icon md-svg-icon="./img/icons/ic_favorite_white_24px.svg" style="color: greenyellow;"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </md-content>
+
+    <div layout="row" layout-wrap>
+
+        <div layout="row" id="cards" flex-sm="100" flex-md="66" flex-gt-md="80">
+
+            <div flex-sm="100" flex-md="50" flex-lg="25" ng-repeat="destination in destinations">
+                <md-card>
+                    <img ng-src="{{destination.image}}" class="md-card-image" alt="Washed Out">
+
+                    </img>
+                    <md-card-content>
+                        <h2 class="md-title">{{destination.name}}</h2>
+                        <p>
+                            The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+                            two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+                        </p>
+                    </md-card-content>
+                    <div class="md-actions" layout="row" layout-align="end center">
+                        <md-button class="md-accent">Explore</md-button>
+                        <md-menu>
+                            <md-button class="md-accent" ng-click="$mdOpenMenu($event)">Book
+                                <md-icon md-menu-origin md-svg-icon="call:email"></md-icon>
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item ng-repeat="item in ['First', 'Business', 'Economy']">
+                                    <md-button ng-click="ctrl.announceClick($index)"> <span md-menu-align-target>{{item}}</span> <span class="md-accent" style="float:right;">€300,-</span></md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                </md-card>
+            </div>
+
+        </div>
+        <div id="lists" hide-sm flex-md="34" flex-gt-md="20">
+            <md-list flex-md="100" flex-gt-md="100">
+                <md-subheader class="md-no-sticky">Filters</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="continent in continents">
+                    <img ng-src="{{continent.image}}?{{$index}}" class="md-avatar" alt="{{continent.name}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ continent.name }}</h3>
+                        <h4>{{ continent.price }}</h4>
+                        <md-checkbox class="md-secondary" ng-model="continent.selected"></md-checkbox>
+                    </div>
+                </md-list-item>
+                <md-divider ></md-divider>
+            </md-list>
+        </div>
+
+
+
+    </div>
+
+
+        <!-- Angular Material Dependencies -->
+        <script src="./bower_components/angular/angular.min.js"></script>
+        <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+
+        <!-- Angular Material Javascript now available via Google CDN; version 0.11.2 used here -->
+        <script src="./bower_components/angular-material/angular-material.min.js"></script>
+        <script src="./js/app.js"></script>
+
+    </body>
+</html>
